@@ -1,0 +1,38 @@
+body {
+    background-color: whitesmoke;
+}
+
+grid {
+    /* border: solid; */
+    box-shadow: 0 0 3px;
+    border-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: blue; */
+    /* box-sizing: border-box; */
+    /* flex-grow: 1; */
+    /* flex-shrink: 1; */
+    height: 480px;
+    min-height: 480px;
+    width: 480px;
+    min-width: 480px;
+}
+
+cell {
+    border: solid;
+    border-color: white;
+    display: block;
+    /* flex-wrap: wrap; */
+    /* background-color: blue; */
+    height: 50px;
+    width: 50px;
+}
+
+main-section {
+    display: flex;
+}
+
+utility {
+    display: flex;
+    flex-direction: column;
+}
