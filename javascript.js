@@ -5,6 +5,7 @@ const body = document.querySelector("body");
 const grid = document.querySelector("grid");
 
 let isMouseDown = false;
+let mode = "brush";
 
 body.addEventListener("mousedown", (e) => {
     e.preventDefault(); // to prevent dragging cells
@@ -42,8 +43,19 @@ function gridInitializer() {
             //     event.target.style.backgroundColor = "transparent";
             // });
             tempCell.addEventListener("mouseover", () => {
+
                 if (isMouseDown) {
-                    event.target.style.backgroundColor = "gray";
+                    switch (mode) {
+                        case "brush":
+                            event.target.style.backgroundColor = "gray";
+                            break;
+                        case "eraser":
+                            event.target.style.backgroundColor = "transparent";
+                            break;
+                        case "rainbow":
+                            event.target.style.backgroundColor = "red";
+                            break;
+                    }
                 }
             });
             grid.appendChild(tempCell);
@@ -53,5 +65,33 @@ function gridInitializer() {
 
 }
 
+function clearCell(cell) {
+    cell.style.backgroundColor = "transparent";
+}
+
+
+function clearGrid() {
+    const cells = document.querySelectorAll("grid > cell");
+
+    for (let i = 0; i < size; ++i) {
+        for (let j = 0; j < size; ++j) {
+            cells.forEach(clearCell);
+        }
+    }
+}
+
+document.querySelector(".clear").addEventListener("click", clearGrid);
+
+document.querySelector(".eraser").addEventListener("click", () => {
+    mode = "eraser";
+})
+
+document.querySelector(".rainbow").addEventListener("click", () => {
+    mode = "rainbow";
+})
+
+document.querySelector(".brush").addEventListener("click", () => {
+    mode = "brush";
+})
 
 gridInitializer();
