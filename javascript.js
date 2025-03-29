@@ -31,17 +31,12 @@ function getCellElement(width, height) {
     return cell;
 }
 
-function gridInitializer() {
+function gridInitializer(size) {
 
     for (let i = 0; i < size; ++i) {
         for (let j = 0; j < size; ++j) {
             let tempCell = getCellElement(gridSize / size, gridSize / size);
-            // tempCell.addEventListener("mouseenter", () => {
-            //     event.target.style.backgroundColor = "gray";
-            // });
-            // tempCell.addEventListener("mouseleave", () => {
-            //     event.target.style.backgroundColor = "transparent";
-            // });
+
             tempCell.addEventListener("mouseover", () => {
 
                 if (isMouseDown) {
@@ -53,11 +48,12 @@ function gridInitializer() {
                             event.target.style.backgroundColor = "transparent";
                             break;
                         case "rainbow":
-                            event.target.style.backgroundColor = "red";
+                            event.target.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
                             break;
                     }
                 }
             });
+
             grid.appendChild(tempCell);
 
         }
@@ -71,12 +67,16 @@ function clearCell(cell) {
 
 
 function clearGrid() {
-    const cells = document.querySelectorAll("grid > cell");
+    // const cells = document.querySelectorAll("grid > cell");
+    // 
+    // for (let i = 0; i < size; ++i) {
+    // for (let j = 0; j < size; ++j) {
+    // cells.forEach(clearCell);
+    // }
+    // }
 
-    for (let i = 0; i < size; ++i) {
-        for (let j = 0; j < size; ++j) {
-            cells.forEach(clearCell);
-        }
+    for (const cell of grid.children) {
+        cell.style.backgroundColor = "transparent";
     }
 }
 
@@ -94,4 +94,23 @@ document.querySelector(".brush").addEventListener("click", () => {
     mode = "brush";
 })
 
-gridInitializer();
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+document.querySelector(".change").addEventListener("click", () => {
+    // alert(1);
+
+    // let child = grid.lastElementChild();
+
+    // const grid = document.querySelector("grid");
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
+        // child = grid.lastElementChild();
+    }
+    gridInitializer(prompt("New size"));
+})
+
+gridInitializer(size);
