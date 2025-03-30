@@ -22,7 +22,7 @@ function getCellElement(width, height) {
     cell.style.borderColor = "black";
     cell.style.borderWidth = "thin";
     cell.style.padding = 0;
-    cell.style.border = 0;
+    // cell.style.border = 0;
     cell.style.margin = 0;
     cell.style.height = `${height}px`;
     cell.style.width = `${width}px`;
@@ -68,6 +68,9 @@ function gridInitializer(size) {
                     case "rainbow":
                         event.target.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
                         break;
+                    case "darken":
+                        console.log(window.getComputedStyle(event.target).getPropertyValue("opacity"));
+                        break;
                 }
             });
 
@@ -111,6 +114,10 @@ document.querySelector(".brush").addEventListener("click", () => {
     mode = "brush";
 })
 
+document.querySelector(".darken").addEventListener("click", () => {
+    mode = "darken";
+})
+
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -127,7 +134,12 @@ document.querySelector(".change").addEventListener("click", () => {
         grid.removeChild(grid.lastChild);
         // child = grid.lastElementChild();
     }
-    gridInitializer(prompt("New size"));
+
+    let newSize = prompt("New size");
+
+    gridInitializer(newSize);
+
+    document.querySelector(".size").textContent = `${newSize}x${newSize}`;
 })
 
 gridInitializer(size);

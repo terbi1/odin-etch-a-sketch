@@ -1,5 +1,10 @@
 body {
     background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
 }
 
 grid {
@@ -35,4 +40,19 @@ main-section {
 utility {
     display: flex;
     flex-direction: column;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+    gap: 4px;
+    margin-top: auto;
+    /* background-color: black; */
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
