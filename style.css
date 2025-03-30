@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+header {
+    text-align: center;
+}
+
 grid {
     /* border: solid; */
     box-shadow: 0 0 3px;
@@ -35,6 +39,7 @@ cell {
 
 main-section {
     display: flex;
+    justify-content: center;
 }
 
 utility {
