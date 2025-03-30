@@ -56,6 +56,21 @@ function gridInitializer(size) {
                 }
             });
 
+            tempCell.addEventListener("click", () => {
+
+                switch (mode) {
+                    case "brush":
+                        event.target.style.backgroundColor = "gray";
+                        break;
+                    case "eraser":
+                        event.target.style.backgroundColor = "transparent";
+                        break;
+                    case "rainbow":
+                        event.target.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+                        break;
+                }
+            });
+
             grid.appendChild(tempCell);
 
         }
