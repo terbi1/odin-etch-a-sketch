@@ -19,13 +19,15 @@ body.addEventListener("mouseup", () => {
 function getCellElement(width, height) {
 
     const cell = document.createElement("cell");
-    cell.style.border = "solid";
     cell.style.borderColor = "black";
+    cell.style.borderWidth = "thin";
+    cell.style.padding = 0;
+    cell.style.border = 0;
+    cell.style.margin = 0;
     cell.style.height = `${height}px`;
     cell.style.width = `${width}px`;
     cell.style.display = "flex";
     cell.style.boxSizing = "border-box";
-    cell.style.borderWidth = "thin";
     cell.style.backgroundColor = "none";
 
     return cell;
